@@ -2,6 +2,13 @@ doctrine:
     dbal:
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '15'
+        driver: 'pdo_mysql'
+        host: '172.17.0.2'
+        port: '3306'
+        dbname: 'my_map_test'
+        user: 'root'
+        password: '123'
+        charset: UTF8
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
