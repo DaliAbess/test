@@ -30,7 +30,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 # Installation de Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+#install of symfony 5 
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN  mv /*/.symfony5/bin/symfony /usr/local/bin/symfony
+RUN symfony -v 
 # Création du répertoire de travail
 WORKDIR /var/www/html
 
@@ -43,7 +46,8 @@ RUN composer install
 RUN chown -R www-data:www-data var
 
 # Exposer le port 9000 pour PHP-FPM
-EXPOSE 9000
+EXPOSE 8000
 
 # Commande par défaut pour l'exécution du serveur PHP-FPM
 CMD ["php-fpm"]
+CMD ["symfony","server:start"]
